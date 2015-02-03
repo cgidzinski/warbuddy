@@ -1,0 +1,25 @@
+
+
+<ion-view view-title="{{weapons.name}}">
+  <ion-content class="padding">
+    <div class="card">
+  <div class="item item-text-wrap">
+  	 <h3>Name: {{weapons.name}}</h3>
+  <h3>Range: {{weapons.range}}</h3>
+  <h3>Strength: {{weapons.strength}}</h3>
+  <h3>AP: {{weapons.ap}}</h3>
+  <h3>Type: {{weapons.type}}</h3>
+  <h3>Type: {{weapons.rules}}</h3>
+  </div>
+</div>
+<div class="card" ng-repeat="rule in weapons.fullRules" >
+  <a href="#/tab/rules/{{rule.id}}">
+  <div class="item item-divider" >
+    {{rule.name}}
+  </div></a>
+  <div class="item item-text-wrap">
+    <span ng-bind-html="rule.text"></span>
+  </div>
+</div>
+  </ion-content>
+</ion-view>

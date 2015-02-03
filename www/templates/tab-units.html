@@ -1,0 +1,10 @@
+<ion-view view-title="Units">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-avatar" ng-repeat="unit in units" type="item-text-wrap" href="#/tab/units/{{unit.id}}">
+        <img ng-src="{{unit.img}}">
+        <h2>{{unit.name}}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
