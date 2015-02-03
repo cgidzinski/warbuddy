@@ -1,7 +1,25 @@
 <ion-view view-title="Units">
   <ion-content>
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" ng-model="filters.name" placeholder="Search">
+  </label>
+  
+
+
+  <label class="item item-input item-select" >
+    <div class="input-label" >
+      Race
+    </div>
+    <select ng-model="filters.race">
+    	<option selected="selected" value=''>All</option>
+      <option>Necron</option>
+      <option>Blood Angel</option>
+      <option>Black Templars</option>
+    </select>
+  </label>
     <ion-list>
-      <ion-item class="item-avatar" ng-repeat="unit in units" type="item-text-wrap" href="#/tab/units/{{unit.id}}">
+      <ion-item class="item-avatar" ng-repeat="unit in units | filter:filters | orderBy:'name':!reverse" type="item-text-wrap" ui-sref="tab.units-detail({Id:unit.id})">
         <img ng-src="{{unit.img}}">
         <h2>{{unit.name}}</h2>
       </ion-item>

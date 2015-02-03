@@ -63,7 +63,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
       views: {
         'tab-units': {
           templateUrl: 'templates/tab-units.html',
-          controller: 'UnitsCtrl'
+          controller: 'JsonCtrl'
         }
       }
     })
@@ -72,7 +72,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
       views: {
         'tab-units': {
           templateUrl: 'templates/units-detail.html',
-          controller: 'UnitsDetailCtrl'
+          controller: 'JsonCtrl'
         }
       }
     })
@@ -82,7 +82,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
       views: {
         'tab-weapons': {
           templateUrl: 'templates/tab-weapons.html',
-          controller: 'WeaponsCtrl'
+          controller: 'JsonCtrl'
         }
       }
     })
@@ -91,7 +91,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
       views: {
         'tab-weapons': {
           templateUrl: 'templates/weapons-detail.html',
-          controller: 'WeaponsDetailCtrl'
+          controller: 'JsonCtrl'
         }
       }
     })
@@ -101,7 +101,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
     views: {
       'tab-rules': {
         templateUrl: 'templates/tab-rules.html',
-        controller: 'RulesCtrl'
+        controller: 'JsonCtrl'
       }
     }
   })
@@ -111,7 +111,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
       views: {
         'tab-rules': {
           templateUrl: 'templates/rules-detail.html',
-          controller: 'RulesDetailCtrl'
+          controller: 'JsonCtrl'
         }
       }
     });
