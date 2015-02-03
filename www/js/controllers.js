@@ -24,15 +24,28 @@ angular.module('WarBuddy.controllers', [])
                         }
                     }
                 }
-                //if ($scope.id != undefined) {
-                    if ($state.current.name == "tab.units-detail") {
-                        var joinedRules = data.weapons.weapon[id].rules.split(",")
-                            .concat(data.units.unit[id].rules.split(","));
-                        removeDups(joinedRules);
+                if ($state.current.name == "tab.units-detail") {
+                    var splitWeapons = data.units.unit[id].weapons.split(",");
+                    var newWeapons = [];
+                    for (missingIndex = splitWeapons.length - 1; missingIndex >= 0; --missingIndex) {
+                        var missingRule = {
+                            "name": splitWeapons[missingIndex],
+                            "text": "Weapon could not be found.",
+                        };
+                        newWeapons[missingIndex] = missingRule;
                     }
-                    if ($state.current.name != "tab.units-detail") {
-                        var joinedRules = data.weapons.weapon[id].rules.split(",");
+                    for (splitWeaponsIndex = splitWeapons.length - 1; splitWeaponsIndex >= 0; --splitWeaponsIndex) {
+                        for (WeaponsListIndex = $scope.weapons.length - 1; WeaponsListIndex >= 0; --WeaponsListIndex) {
+                            if (splitWeapons[splitWeaponsIndex] == $scope.weapons[WeaponsListIndex].name) {
+                                newWeapons[splitWeaponsIndex] = $scope.weapons[WeaponsListIndex];
+                            }
+                        }
                     }
+                    $scope.fullWeapons = newWeapons;
+                }
+                if ($state.current.name == "tab.units-detail" || $state.current.name == "tab.weapons-detail") {
+                    var joinedRules = data.weapons.weapon[id].rules.split(",")
+                        .concat(data.units.unit[id].rules.split(","));
                     removeDups(joinedRules);
                     var splitRules = joinedRules;
                     var newRules = [];
@@ -51,24 +64,7 @@ angular.module('WarBuddy.controllers', [])
                         }
                     }
                     $scope.fullRules = newRules;
-                    var splitWeapons = data.units.unit[id].weapons.split(",");
-                    var newWeapons = [];
-                    for (missingIndex = splitWeapons.length - 1; missingIndex >= 0; --missingIndex) {
-                        var missingRule = {
-                            "name": splitWeapons[missingIndex],
-                            "text": "Weapon could not be found.",
-                        };
-                        newWeapons[missingIndex] = missingRule;
-                    }
-                    for (splitWeaponsIndex = splitWeapons.length - 1; splitWeaponsIndex >= 0; --splitWeaponsIndex) {
-                        for (WeaponsListIndex = $scope.weapons.length - 1; WeaponsListIndex >= 0; --WeaponsListIndex) {
-                            if (splitWeapons[splitWeaponsIndex] == $scope.weapons[WeaponsListIndex].name) {
-                                newWeapons[splitWeaponsIndex] = $scope.weapons[WeaponsListIndex];
-                            }
-                        }
-                    }
-                    $scope.fullWeapons = newWeapons;
-                //}
+                }
             })
             .
         error(function(data, status, headers, config) {
