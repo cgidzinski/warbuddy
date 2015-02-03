@@ -15,18 +15,46 @@
   <h3>T: {{units[id].t}}</h3>
   <h3>W: {{units[id].w}}</h3>
   <h3>I: {{units[id].i}}</h3>
-
-<h3>A: {{units[id].a}}</h3>
-<h3>LD: {{units[id].ld}}</h3>
-<h3>SV: {{units[id].sv}}</h3>
-<h3>Rules: {{units[id].rules}}</h3>
-<h3>Type: {{units[id].type}}</h3>
-<h3>F: {{units[id].front}}</h3>
-<h3>S: {{units[id].side}}</h3>
-<h3>R: {{units[id].rear}}</h3>
-<h3>Points: {{units[id].points}}</h3>
-<h3>Weapons: {{units[id].weapons}}</h3>
+  <h3>A: {{units[id].a}}</h3>
+  <h3>LD: {{units[id].ld}}</h3>
+  <h3>SV: {{units[id].sv}}</h3>
+  <h3>Rules: {{units[id].rules}}</h3>
+  <h3>Type: {{units[id].type}}</h3>
+  <h3>F: {{units[id].front}}</h3>
+  <h3>S: {{units[id].side}}</h3>
+  <h3>R: {{units[id].rear}}</h3>
+  <h3>Points: {{units[id].points}}</h3>
+  <h3>Weapons: {{units[id].weapons}}</h3>
   </div>
 </div>
+Weapons
+<hr>
+<div class="card" ng-repeat="weaponInfo in fullWeapons" >
+  <!-- <a href="#/tab/rules/{{rule.id}}"> -->
+  <div class="item item-divider" >
+    {{weaponInfo.name}}
+  </div></a>
+  <div class="item item-text-wrap">
+  <h3>Name: {{weaponInfo.name}}</h3>
+  <h3>Range: {{weaponInfo.range}}</h3>
+  <h3>Strength: {{weaponInfo.strength}}</h3>
+  <h3>AP: {{weaponInfo.ap}}</h3>
+  <h3>Type: {{weaponInfo.type}}</h3>
+  <h3>Type: {{weaponInfo.rules}}</h3>
+  </div>
+</div>
+
+Rules
+<hr>
+<div class="card" ng-repeat="ruleInfo in fullRules" >
+  <!-- <a href="#/tab/rules/{{rule.id}}"> -->
+  <div class="item item-divider" >
+    {{ruleInfo.name}}
+  </div></a>
+  <div class="item item-text-wrap">
+    <span ng-bind-html="ruleInfo.text"></span>
+  </div>
+</div>
+
   </ion-content>
 </ion-view>
