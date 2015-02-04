@@ -1,10 +1,10 @@
-<ion-view view-title="Rules">
+<ion-view view-title="Rule List">
     <ion-content>
         <label class="item item-input"> <i class="icon ion-search placeholder-icon"></i>
             <input type="text" ng-model="filters" placeholder="Search"> </label>
-        <ion-list>
+        <div class="list list-inset" >
             <ion-item class="item" ng-repeat="rule in rules | filter:filters | orderBy:'name':!reverse " ng-filter="" type="item-text-wrap" ui-sref="tab.rules-detail({Id:rule.id})">
                 <h2>{{rule.name}}</h2> </ion-item>
-        </ion-list>
+        </div>
     </ion-content>
 </ion-view>

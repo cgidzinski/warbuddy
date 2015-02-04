@@ -1,8 +1,37 @@
-angular.module('WarBuddy.controllers', [])
-    .controller('HomeCtrl', function($scope) {})
-    .controller('JsonCtrl', function($scope, $stateParams, $http, $state) {
+angular.module('WarBuddy.controllers', ['ngStorage'])
+    .controller('HomeCtrl',function($scope, $ionicModal,$localStorage, $stateParams, $state) {
+
+  $ionicModal.fromTemplateUrl('templates/settings.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+    $scope.InputAddr = angular.copy($localStorage.Repo);
+  };
+  $scope.closeModal = function() {
+   $localStorage.Repo=this.InputAddr;
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+    })
+
+    .controller('JsonCtrl', function($scope, $http, $state, $stateParams, $localStorage) {
         var id = $stateParams.Id;
-        $http.get("data/data.txt")
+        $http.get($localStorage.Repo)
             .
         success(function(data, status, headers, config) {
                 $scope.id = id;
@@ -10,20 +39,7 @@ angular.module('WarBuddy.controllers', [])
                 $scope.rules = data.rules.rule;
                 $scope.weapons = data.weapons.weapon;
 
-                function removeDups(array) {
-                    var index = {};
-                    // traverse array from end to start so removing the current item from the array
-                    // doesn't mess up the traversal
-                    for (var i = array.length - 1; i >= 0; i--) {
-                        if (array[i] in index) {
-                            // remove this item
-                            array.splice(i, 1);
-                        } else {
-                            // add this value index
-                            index[array[i]] = true;
-                        }
-                    }
-                }
+              
                 if ($state.current.name == "tab.units-detail") {
                     var splitWeapons = data.units.unit[id].weapons.split(",");
                     var newWeapons = [];
@@ -44,8 +60,12 @@ angular.module('WarBuddy.controllers', [])
                     $scope.fullWeapons = newWeapons;
                 }
                 if ($state.current.name == "tab.units-detail" || $state.current.name == "tab.weapons-detail") {
-                    var joinedRules = data.weapons.weapon[id].rules.split(",")
-                        .concat(data.units.unit[id].rules.split(","));
+                    if ($state.current.name == "tab.weapons-detail") {
+                        var joinedRules = data.weapons.weapon[id].rules.split(",");
+                    } else {
+                        var joinedRules = data.weapons.weapon[id].rules.split(",")
+                            .concat(data.units.unit[id].rules.split(","));
+                    }
                     removeDups(joinedRules);
                     var splitRules = joinedRules;
                     var newRules = [];
@@ -71,3 +91,24 @@ angular.module('WarBuddy.controllers', [])
             alert("Connection Failed");
         });
     });
+
+
+
+
+
+  function removeDups(array) {
+                    var index = {};
+                    // traverse array from end to start so removing the current item from the array
+                    // doesn't mess up the traversal
+                    for (var i = array.length - 1; i >= 0; i--) {
+                        if (array[i] in index) {
+                            // remove this item
+                            array.splice(i, 1);
+                        } else {
+                            // add this value index
+                            index[array[i]] = true;
+                        }
+                    }
+                }
+
+

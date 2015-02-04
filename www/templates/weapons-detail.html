@@ -1,14 +1,17 @@
-<ion-view view-title="{{weapons[id].name}}">
+<ion-view view-title="Weapon">
     <ion-content class="padding">
         <div class="card">
-            <div class="item item-text-wrap">
-                <h3>Name: {{weapons[id].name}}</h3>
+            <div class="item item-divider"> {{weapons[id].name}} </div>
+            </a>
+            <div class="item item-text-wrap"> <span>
                 <h3>Range: {{weapons[id].range}}</h3>
                 <h3>Strength: {{weapons[id].strength}}</h3>
                 <h3>AP: {{weapons[id].ap}}</h3>
                 <h3>Type: {{weapons[id].type}}</h3>
-                <h3>Type: {{weapons[id].rules}}</h3> </div>
+                <h3>Rules: {{weapons[id].rules}}</h3> </div>
+            </span> </div>
         </div>
+        <h1 align="center">Rules</h1>
         <div class="card" ng-repeat="ruleInfo in fullRules">
             <!-- <a href="#/tab/rules/{{rule.id}}"> -->
             <div class="item item-divider"> {{ruleInfo.name}} </div>
@@ -17,3 +20,5 @@
         </div>
     </ion-content>
 </ion-view>
+
+
