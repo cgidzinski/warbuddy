@@ -1,6 +1,5 @@
 angular.module('WarBuddy.controllers', ['ngStorage'])
     .controller('HomeCtrl',function($scope, $ionicModal,$localStorage, $stateParams, $state) {
-
   $ionicModal.fromTemplateUrl('templates/settings.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -13,8 +12,21 @@ angular.module('WarBuddy.controllers', ['ngStorage'])
   };
   $scope.closeModal = function() {
    $localStorage.Repo=this.InputAddr;
+
+//UPDATE FILES
+
     $scope.modal.hide();
   };
+
+    
+
+
+
+
+
+
+
+
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
@@ -31,7 +43,8 @@ angular.module('WarBuddy.controllers', ['ngStorage'])
 
     .controller('JsonCtrl', function($scope, $http, $state, $stateParams, $localStorage) {
         var id = $stateParams.Id;
-        $http.get($localStorage.Repo)
+        //$http.get($localStorage.Repo)
+        $http.get('/json/data.txt')
             .
         success(function(data, status, headers, config) {
                 $scope.id = id;
@@ -112,3 +125,14 @@ angular.module('WarBuddy.controllers', ['ngStorage'])
                 }
 
 
+
+
+// function setFilePath() {
+//     if(detectAndroid()) {   
+//         file_path = "file:///android_asset/www/json/";
+//         //4 Android
+//     } else {
+//         file_path = "res//db//";
+//         //4 apache//iOS/desktop
+//     }
+// }

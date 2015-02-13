@@ -1,1 +1,2 @@
 ionic run android
+pause
