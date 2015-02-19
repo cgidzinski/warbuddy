@@ -1,3 +1,8 @@
+//TODO
+//Add No Rule Found if not found
+//Remove Possible Dupe Rules when adding both Weapon Rules and Rules for Unit
+//Unit Movement
+
 angular.module('WarBuddy.controllers', ['ngStorage'])
     .controller('HomeCtrl', function($scope, $ionicModal, $localStorage, $stateParams, $state) {
         //   $ionicModal.fromTemplateUrl('templates/settings.html', {
