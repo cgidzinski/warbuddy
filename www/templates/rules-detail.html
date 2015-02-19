@@ -1,9 +1,9 @@
 <ion-view view-title="Rule">
     <ion-content class="padding">
         <div class="card">
-            <div class="item item-divider"> {{rules[id].name}} </div>
+            <div class="item item-divider"> {{rule.name}} - {{rule._id}}</div>
             </a>
-            <div class="item item-text-wrap"> <span ng-bind-html="rules[id].text"></span> </div>
+            <div class="item item-text-wrap"> <span ng-bind-html="rule.description"></span> </div>
         </div>
     </ion-content>
 </ion-view>

@@ -53,7 +53,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
                 views: {
                     'tab-units': {
                         templateUrl: 'templates/tab-units.html',
-                        controller: 'JsonCtrl'
+                        controller: 'UnitListCtrl'
                     }
                 }
             })
@@ -62,7 +62,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
                 views: {
                     'tab-units': {
                         templateUrl: 'templates/units-detail.html',
-                        controller: 'JsonCtrl'
+                        controller: 'UnitCtrl'
                     }
                 }
             })
@@ -71,7 +71,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
                 views: {
                     'tab-weapons': {
                         templateUrl: 'templates/tab-weapons.html',
-                        controller: 'JsonCtrl'
+                        controller: 'WeaponListCtrl'
                     }
                 }
             })
@@ -80,7 +80,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
                 views: {
                     'tab-weapons': {
                         templateUrl: 'templates/weapons-detail.html',
-                        controller: 'JsonCtrl'
+                        controller: 'WeaponCtrl'
                     }
                 }
             })
@@ -89,7 +89,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
                 views: {
                     'tab-rules': {
                         templateUrl: 'templates/tab-rules.html',
-                        controller: 'JsonCtrl'
+                        controller: 'RuleListCtrl'
                     }
                 }
             })
@@ -98,7 +98,7 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
                 views: {
                     'tab-rules': {
                         templateUrl: 'templates/rules-detail.html',
-                        controller: 'JsonCtrl'
+                        controller: 'RuleCtrl'
                     }
                 }
             });

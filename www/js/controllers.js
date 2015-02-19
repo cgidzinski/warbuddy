@@ -1,138 +1,218 @@
 angular.module('WarBuddy.controllers', ['ngStorage'])
-    .controller('HomeCtrl',function($scope, $ionicModal,$localStorage, $stateParams, $state) {
-  $ionicModal.fromTemplateUrl('templates/settings.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-  $scope.openModal = function() {
-    $scope.modal.show();
-    $scope.InputAddr = angular.copy($localStorage.Repo);
-  };
-  $scope.closeModal = function() {
-   $localStorage.Repo=this.InputAddr;
-
-//UPDATE FILES
-
-    $scope.modal.hide();
-  };
-
-    
-
-
-
-
-
-
-
-
-  //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-  });
+    .controller('HomeCtrl', function($scope, $ionicModal, $localStorage, $stateParams, $state) {
+        //   $ionicModal.fromTemplateUrl('templates/settings.html', {
+        //     scope: $scope,
+        //     animation: 'slide-in-up'
+        //   }).then(function(modal) {
+        //     $scope.modal = modal;
+        //   });
+        //   $scope.openModal = function() {
+        //     $scope.modal.show();
+        //     $scope.InputAddr = angular.copy($localStorage.Repo);
+        //   };
+        //   $scope.closeModal = function() {
+        //    $localStorage.Repo=this.InputAddr;
+        // //UPDATE FILES
+        //     $scope.modal.hide();
+        //   };
+        //   //Cleanup the modal when we're done with it!
+        //   $scope.$on('$destroy', function() {
+        //     $scope.modal.remove();
+        //   });
+        //   // Execute action on hide modal
+        //   $scope.$on('modal.hidden', function() {
+        //     // Execute action
+        //   });
+        //   // Execute action on remove modal
+        //   $scope.$on('modal.removed', function() {
+        //     // Execute action
+        //   });
     })
-
-    .controller('JsonCtrl', function($scope, $http, $state, $stateParams, $localStorage) {
-        var id = $stateParams.Id;
-        //$http.get($localStorage.Repo)
-        $http.get('/json/data.txt')
+    //////////////////////////////////////////////////////////////////////
+    .controller('UnitListCtrl', function($scope, $http, $state) {
+        console.log("Unit List Page Loaded");
+        $http.get('http://evg31337.com:3001/API_Units')
             .
         success(function(data, status, headers, config) {
-                $scope.id = id;
-                $scope.units = data.units.unit;
-                $scope.rules = data.rules.rule;
-                $scope.weapons = data.weapons.weapon;
-
-              
-                if ($state.current.name == "tab.units-detail") {
-                    var splitWeapons = data.units.unit[id].weapons.split(",");
-                    var newWeapons = [];
-                    for (missingIndex = splitWeapons.length - 1; missingIndex >= 0; --missingIndex) {
-                        var missingRule = {
-                            "name": splitWeapons[missingIndex],
-                            "text": "Weapon could not be found.",
-                        };
-                        newWeapons[missingIndex] = missingRule;
-                    }
-                    for (splitWeaponsIndex = splitWeapons.length - 1; splitWeaponsIndex >= 0; --splitWeaponsIndex) {
-                        for (WeaponsListIndex = $scope.weapons.length - 1; WeaponsListIndex >= 0; --WeaponsListIndex) {
-                            if (splitWeapons[splitWeaponsIndex] == $scope.weapons[WeaponsListIndex].name) {
-                                newWeapons[splitWeaponsIndex] = $scope.weapons[WeaponsListIndex];
-                            }
-                        }
-                    }
-                    $scope.fullWeapons = newWeapons;
-                }
-                if ($state.current.name == "tab.units-detail" || $state.current.name == "tab.weapons-detail") {
-                    if ($state.current.name == "tab.weapons-detail") {
-                        var joinedRules = data.weapons.weapon[id].rules.split(",");
-                    } else {
-                        var joinedRules = data.weapons.weapon[id].rules.split(",")
-                            .concat(data.units.unit[id].rules.split(","));
-                    }
-                    removeDups(joinedRules);
-                    var splitRules = joinedRules;
-                    var newRules = [];
-                    for (missingIndex = splitRules.length - 1; missingIndex >= 0; --missingIndex) {
-                        var missingRule = {
-                            "name": splitRules[missingIndex],
-                            "text": "Rule could not be found.",
-                        };
-                        newRules[missingIndex] = missingRule;
-                    }
-                    for (splitRulesIndex = splitRules.length - 1; splitRulesIndex >= 0; --splitRulesIndex) {
-                        for (ruleListIndex = $scope.rules.length - 1; ruleListIndex >= 0; --ruleListIndex) {
-                            if (splitRules[splitRulesIndex] == $scope.rules[ruleListIndex].name) {
-                                newRules[splitRulesIndex] = $scope.rules[ruleListIndex];
-                            }
-                        }
-                    }
-                    $scope.fullRules = newRules;
-                }
+                //Success Log
+                $scope.units = data;
+                console.log(data);
             })
             .
         error(function(data, status, headers, config) {
-            alert("Connection Failed");
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
+        });
+    })
+    ///////////////////////////
+    .controller('UnitCtrl', function($scope, $http, $stateParams) {
+        console.log("Unit Detail Page Loaded");
+        var id = $stateParams.Id;
+        $http.get('http://evg31337.com:3001/API_Units/' + id)
+            .
+        success(function(data, status, headers, config) {
+                //Success Log
+                $scope.unit = data;
+                console.log(data);
+            })
+            .
+        error(function(data, status, headers, config) {
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
+        });
+        $scope.ruleList = [];
+        $scope.weaponList = [];
+        $http.get('http://evg31337.com:3001/API_Weapons/')
+            .
+        success(function(data, status, headers, config) {
+                //Success Log
+                $scope.unit.weapons.split(",")
+                    .forEach(function(uWeapon) {
+                        data.forEach(function(rWeapon) {
+                            if (uWeapon == rWeapon.name) {
+                                console.log(rWeapon);
+                                $scope.weaponList.push(rWeapon);
+                                $http.get('http://evg31337.com:3001/API_Rules/')
+                                    .
+                                success(function(data, status, headers, config) {
+                                        //Success Log
+                                        rWeapon.rules.split(",")
+                                            .forEach(function(wRule) {
+                                                data.forEach(function(rRule) {
+                                                    if (wRule == rRule.name) {
+                                                        console.log(rRule);
+                                                        $scope.ruleList.push(rRule);
+                                                    }
+                                                });
+                                            });
+                                    })
+                                    .
+                                error(function(data, status, headers, config) {
+                                    //Fail Log
+                                    console.log("Connection Failed");
+                                    console.log(data + status + headers);
+                                });
+                            }
+                        });
+                    });
+            })
+            .
+        error(function(data, status, headers, config) {
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
+        });
+        $http.get('http://evg31337.com:3001/API_Rules/')
+            .
+        success(function(data, status, headers, config) {
+                //Success Log
+                $scope.unit.rules.split(",")
+                    .forEach(function(uRule) {
+                        data.forEach(function(rRule) {
+                            if (uRule == rRule.name) {
+                                console.log(rRule);
+                                $scope.ruleList.push(rRule);
+                            }
+                        });
+                    });
+            })
+            .
+        error(function(data, status, headers, config) {
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
+        });
+    })
+    //////////////////////////////////////////////////////////////////////
+    .controller('WeaponListCtrl', function($scope, $http, $state) {
+        console.log("Weapon List Page Loaded");
+        $http.get('http://evg31337.com:3001/API_Weapons')
+            .
+        success(function(data, status, headers, config) {
+                //Success Log
+                $scope.weapons = data;
+                console.log(data);
+            })
+            .
+        error(function(data, status, headers, config) {
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
+        });
+    })
+    ///////////////////////////
+    .controller('WeaponCtrl', function($scope, $http, $stateParams) {
+        console.log("Weapon Detail Page Loaded");
+        var id = $stateParams.Id;
+        $http.get('http://evg31337.com:3001/API_Weapons/' + id)
+            .
+        success(function(data, status, headers, config) {
+                //Success Log
+                $scope.weapon = data;
+                console.log(data);
+            })
+            .
+        error(function(data, status, headers, config) {
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
+        });
+        $scope.ruleList = [];
+        $http.get('http://evg31337.com:3001/API_Rules/')
+            .
+        success(function(data, status, headers, config) {
+                //Success Log
+                $scope.weapon.rules.split(",")
+                    .forEach(function(wRule) {
+                        data.forEach(function(rRule) {
+                            if (wRule == rRule.name) {
+                                console.log(rRule);
+                                $scope.ruleList.push(rRule);
+                            }
+                        });
+                    });
+            })
+            .
+        error(function(data, status, headers, config) {
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
+        });
+    })
+    //////////////////////////////////////////////////////////////////////
+    .controller('RuleListCtrl', function($scope, $http, $state) {
+        console.log("Rule List Page Loaded");
+        $http.get('http://evg31337.com:3001/API_Rules')
+            .
+        success(function(data, status, headers, config) {
+                //Success Log
+                $scope.rules = data;
+                console.log(data);
+            })
+            .
+        error(function(data, status, headers, config) {
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
+        });
+    })
+    ///////////////////////////
+    .controller('RuleCtrl', function($scope, $http, $stateParams) {
+        console.log("Rule Detail Page Loaded");
+        var id = $stateParams.Id;
+        $http.get('http://evg31337.com:3001/API_Rules/' + id)
+            .
+        success(function(data, status, headers, config) {
+                //Success Log
+                $scope.rule = data;
+                console.log(data);
+            })
+            .
+        error(function(data, status, headers, config) {
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
         });
     });
-
-
-
-
-
-  function removeDups(array) {
-                    var index = {};
-                    // traverse array from end to start so removing the current item from the array
-                    // doesn't mess up the traversal
-                    for (var i = array.length - 1; i >= 0; i--) {
-                        if (array[i] in index) {
-                            // remove this item
-                            array.splice(i, 1);
-                        } else {
-                            // add this value index
-                            index[array[i]] = true;
-                        }
-                    }
-                }
-
-
-
-
-// function setFilePath() {
-//     if(detectAndroid()) {   
-//         file_path = "file:///android_asset/www/json/";
-//         //4 Android
-//     } else {
-//         file_path = "res//db//";
-//         //4 apache//iOS/desktop
-//     }
-// }

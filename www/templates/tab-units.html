@@ -13,7 +13,7 @@
         </label>
         
         <div class="list list-inset" >
-            <ion-item class="item-avatar" ng-repeat="unit in units | filter:filters | orderBy:'name':!reverse" type="item-text-wrap" ui-sref="tab.units-detail({Id:unit.id})"> <img ng-src="{{unit.img}}">
+            <ion-item class="item-avatar" ng-repeat="unit in units | filter:filters | orderBy:'name':!reverse" type="item-text-wrap" ui-sref="tab.units-detail({Id:unit._id})"> <img ng-src="{{unit.image}}">
                 <h2>{{unit.name}}</h2> 
                 <p>{{unit.race}} {{unit.type}}</p>
             </ion-item>
