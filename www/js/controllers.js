@@ -5,33 +5,7 @@
 
 angular.module('WarBuddy.controllers', ['ngStorage'])
     .controller('HomeCtrl', function($scope, $ionicModal, $localStorage, $stateParams, $state) {
-        //   $ionicModal.fromTemplateUrl('templates/settings.html', {
-        //     scope: $scope,
-        //     animation: 'slide-in-up'
-        //   }).then(function(modal) {
-        //     $scope.modal = modal;
-        //   });
-        //   $scope.openModal = function() {
-        //     $scope.modal.show();
-        //     $scope.InputAddr = angular.copy($localStorage.Repo);
-        //   };
-        //   $scope.closeModal = function() {
-        //    $localStorage.Repo=this.InputAddr;
-        // //UPDATE FILES
-        //     $scope.modal.hide();
-        //   };
-        //   //Cleanup the modal when we're done with it!
-        //   $scope.$on('$destroy', function() {
-        //     $scope.modal.remove();
-        //   });
-        //   // Execute action on hide modal
-        //   $scope.$on('modal.hidden', function() {
-        //     // Execute action
-        //   });
-        //   // Execute action on remove modal
-        //   $scope.$on('modal.removed', function() {
-        //     // Execute action
-        //   });
+
     })
     //////////////////////////////////////////////////////////////////////
     .controller('UnitListCtrl', function($scope, $http, $state) {
@@ -202,6 +176,65 @@ angular.module('WarBuddy.controllers', ['ngStorage'])
             console.log("Connection Failed");
             console.log(data + status + headers);
         });
+    })
+        //////////////////////////////////////////////////////////////////////
+    .controller('ChartCtrl', function($scope, $http, $state) {
+        console.log("Chart Page Loaded");
+ $scope.tohitroll="";
+$scope.towoundroll = "";
+
+
+$scope.setActivea = function(type) {
+    $scope.activea = type;
+    calcstats();
+};
+
+$scope.isActivea = function(type) {
+    return type === $scope.activea;
+};
+
+$scope.setActiveb = function(type) {
+    $scope.activeb = type;
+    calcstats();
+};
+
+$scope.isActiveb = function(type) {
+    return type === $scope.activeb;
+};
+
+$scope.tohitchart = [
+            ['4+', '4+', '5+','5+', '5+', '5+','5+', '5+', '5+','5+'],
+            ['3+', '4+', '4+','5+', '5+', '5+','5+', '5+', '5+','5+'],
+            ['3+', '3+', '4+','4+', '4+', '4+','5+', '5+', '5+','5+'],
+            ['3+', '3+', '3+','4+', '4+', '4+','4+', '4+', '5+','5+'],
+            ['3+', '3+', '3+','3+', '4+', '4+','4+', '4+', '4+','4+'],
+            ['3+', '3+', '3+','3+', '3+', '4+','4+', '4+', '4+','4+'],
+            ['3+', '3+', '3+','3+', '3+', '3+','4+', '4+', '4+','4+'],
+            ['3+', '3+', '3+','3+', '3+', '3+','3+', '4+', '4+','4+'],
+            ['3+', '3+', '3+','3+', '3+', '3+','3+', '3+', '4+','4+'],
+            ['3+', '3+', '3+','3+', '3+', '3+','3+', '3+', '3+','4+']
+           ];
+
+           $scope.towoundchart = [
+            ['4+', '5+', '6+','6+', '-', '-','-', '-', '-','-'],
+            ['3+', '4+', '5+','6+', '6+', '-','-', '-', '-','-'],
+            ['2+', '3+', '4+','5+', '6+', '6+','-', '-', '-','-'],
+            ['2+', '2+', '3+','4+', '5+', '6+','6+', '-', '-','-'],
+            ['2+', '2+', '2+','3+', '4+', '5+','6+', '6+', '-','-'],
+            ['2+', '2+', '2+','2+', '3+', '4+','5+', '6+', '6+','-'],
+            ['2+', '2+', '2+','2+', '2+', '3+','4+', '5+', '6+','6+'],
+            ['2+', '2+', '2+','2+', '2+', '2+','3+', '4+', '5+','6+'],
+            ['2+', '2+', '2+','2+', '2+', '2+','2+', '3+', '4+','5+'],
+            ['2+', '2+', '2+','2+', '2+', '2+','2+', '2+', '3+','4+']
+           ];
+
+function calcstats() {
+$scope.tohitroll=$scope.tohitchart[$scope.activea][$scope.activeb]
+$scope.towoundroll=$scope.towoundchart[$scope.activea][$scope.activeb]
+}
+
+
+
     })
     ///////////////////////////
     .controller('RuleCtrl', function($scope, $http, $stateParams) {

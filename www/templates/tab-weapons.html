@@ -4,7 +4,7 @@
             <input type="text" ng-model="filters" placeholder="Search"> </label>
         <div class="list list-inset" >
             <ion-item class="item" ng-repeat="weapon in weapons | filter:filters | orderBy:'name':!reverse" type="item-text-wrap" ui-sref="tab.weapons-detail({Id:weapon._id})">
-                <h2>{{weapon.name}} - {{weapon._id}}</h2> </ion-item>
+                <h2>{{weapon.name}}</h2> </ion-item>
         </div>
     </ion-content>
 </ion-view>

@@ -4,7 +4,7 @@
             <input type="text" ng-model="filters" placeholder="Search"> </label>
         <div class="list list-inset" >
             <ion-item class="item" ng-repeat="rule in rules | filter:filters | orderBy:'name':!reverse " ng-filter="" type="item-text-wrap" ui-sref="tab.rules-detail({Id:rule._id})">
-                <h2>{{rule.name}} - {{rule._id}}</h2> </ion-item>
+                <h2>{{rule.name}}</h2> </ion-item>
         </div>
     </ion-content>
 </ion-view>
