@@ -212,7 +212,7 @@ case "Tank":        $scope.unit.move = 'Movement: X", Charge: X';        break;
         });
     })
         //////////////////////////////////////////////////////////////////////
-    .controller('addCtrl', function($scope, $http, $state) {
+    .controller('addCtrl', function($scope, $http, $state, $ionicModal) {
         console.log("Add Page Loaded");
          $http.get('http://evg31337.com:3001/API_Units')
             .
@@ -220,10 +220,39 @@ case "Tank":        $scope.unit.move = 'Movement: X", Charge: X';        break;
                 $scope.units = data;
             });
 
-//5570596ef5d30f9f0cc235ce
 
-$scope.UnitDelete = function(id) {
-        $http.delete('http://evg31337.com:3001/API_Units/'+id) .
+
+
+
+
+$ionicModal.fromTemplateUrl('templates/contact-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal
+  })  
+
+  $scope.openModal = function(item) {
+    $scope.item = item;
+    $scope.modal.show()
+  }
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
+
+
+
+
+
+$scope.UnitDelete = function(item) {
+    $scope.units.splice($scope.units.indexOf(item), 1);
+        $http.delete('http://evg31337.com:3001/API_Units/'+item._id) .
         success(function(data, status, headers, config) {
              console.log("Connection Ok");
             console.log(data + status + headers);
