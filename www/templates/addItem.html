@@ -2,7 +2,7 @@
     <ion-content>
       <br>
 <div class="button-bar">
-  <a class="button" ng-init="unitshow=true;ruleshow=false;weaponshow=false" ng-click="unitshow=true;ruleshow=false;weaponshow=false">Units</a>
+  <a class="button" ng-click="unitshow=true;ruleshow=false;weaponshow=false">Units</a>
   <a class="button" ng-click="unitshow=false;ruleshow=true;weaponshow=false">Rules</a>
   <a class="button" ng-click="unitshow=false;ruleshow=false;weaponshow=true">Weapons</a>
 </div>
@@ -40,7 +40,7 @@
 
   </div>
   <div class="item item-divider">
-    I'm a Footer in a Card!
+    <button class="button button-block button-positive" ng-click="openModal(unit)" >Add New</button>
   </div>
 </div>
 
