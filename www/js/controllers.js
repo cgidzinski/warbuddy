@@ -27,13 +27,47 @@ angular.module('WarBuddy.controllers', ['ngStorage'])
     ///////////////////////////
     .controller('UnitCtrl', function($scope, $http, $stateParams) {
         console.log("Unit Detail Page Loaded");
+        $scope.unit=[];
+        $scope.unit.rules=[];
         var id = $stateParams.Id;
         $http.get('http://evg31337.com:3001/API_Units/' + id)
             .
         success(function(data, status, headers, config) {
                 //Success Log
                 $scope.unit = data;
-                console.log(data);
+
+
+switch($scope.unit.type) {
+
+case "Infantry":        $scope.unit.move = 'Movement: 6", Charge: D6';        break;
+case "Jump Infantry":        $scope.unit.move = 'Movement: 12", Charge: 2D6,RR';        break;
+case "Beast":        $scope.unit.move = 'Movement: 12", Charge: 2D6';        break;
+case "Cavalary":        $scope.unit.move = 'Movement: 12", Charge: 2D6';        break;
+case "Bikes":        $scope.unit.move = 'Movement: 12", Charge: 2D6';        break;
+case "Jetbikes":        $scope.unit.move = 'Movement: 12", Charge: 2D6';        break;
+case "Artillery":        $scope.unit.move = 'Movement: 6", Charge:2 D6';        break;
+case "Jet Pack Infantry":        $scope.unit.move = 'Movement: 6", Charge: 2D6';        break;
+case "Monsterous Creature":        $scope.unit.move = 'Movement: 6", Charge: 2D6';        break;
+
+case "Charriots":        $scope.unit.move = 'Movement: X", Charge: 2D6';        break;
+case "Walkers":        $scope.unit.move = 'Movement: 6", Charge: 2D6';        break;
+case "Skimmer":        $scope.unit.move = 'Movement: X", Charge: X';        break;
+case "Flyer":        $scope.unit.move = 'Movement: X", Charge: X';        break;
+case "Tank":        $scope.unit.move = 'Movement: X", Charge: X';        break;
+
+
+    default:
+            $scope.unit.move = 'Movement Not Found';        break;
+} 
+
+
+
+
+
+
+
+
+                                console.log(data);
             })
             .
         error(function(data, status, headers, config) {
@@ -176,6 +210,33 @@ angular.module('WarBuddy.controllers', ['ngStorage'])
             console.log("Connection Failed");
             console.log(data + status + headers);
         });
+    })
+        //////////////////////////////////////////////////////////////////////
+    .controller('addCtrl', function($scope, $http, $state) {
+        console.log("Add Page Loaded");
+         $http.get('http://evg31337.com:3001/API_Units')
+            .
+        success(function(data, status, headers, config) {
+                $scope.units = data;
+            });
+
+//5570596ef5d30f9f0cc235ce
+
+$scope.UnitDelete = function(id) {
+        $http.delete('http://evg31337.com:3001/API_Units/'+id) .
+        success(function(data, status, headers, config) {
+             console.log("Connection Ok");
+            console.log(data + status + headers);
+
+            }) .
+        error(function(data, status, headers, config) {
+            //Fail Log
+            console.log("Connection Failed");
+            console.log(data + status + headers);
+        });
+    };
+
+
     })
         //////////////////////////////////////////////////////////////////////
     .controller('ChartCtrl', function($scope, $http, $state) {

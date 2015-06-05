@@ -7,13 +7,11 @@
     Chart Calculator
   </div>
   <div class="item item-text-wrap">
-
-
-
-
-Attacker Weapon Skill (To Hit)
+Attacker 
 <br>
-Attacker Weapon Strength (To Wound)
+To Hit: Weapon Skill (WS)
+<br>
+To Wound: Weapon Strength (W)
 <div class="button-bar">
     <a class="button" ng-class="{'button-positive': isActivea('1')}" ng-click="setActivea('1')">1</a>
     <a class="button" ng-class="{'button-positive': isActivea('2')}" ng-click="setActivea('2')">2</a>
@@ -26,10 +24,14 @@ Attacker Weapon Strength (To Wound)
     <a class="button" ng-class="{'button-positive': isActivea('9')}" ng-click="setActivea('9')">9</a>
     <a class="button" ng-class="{'button-positive': isActivea('10')}" ng-click="setActivea('10')">10</a>
 </div>
+</div>
+  <div class="item item-text-wrap">
 <br>
-Target Weapon Skill (To Hit)
+Target
 <br>
-Target Toughness (To Wound)
+To Hit: Weapon Skill (WS)
+<br>
+To Wound: Toughness (T)
 <div class="button-bar">
     <a class="button" ng-class="{'button-positive': isActiveb('1')}" ng-click="setActiveb('1')">1</a>
     <a class="button" ng-class="{'button-positive': isActiveb('2')}" ng-click="setActiveb('2')">2</a>
@@ -43,6 +45,8 @@ Target Toughness (To Wound)
     <a class="button" ng-class="{'button-positive': isActiveb('10')}" ng-click="setActiveb('10')">10</a>
 </div>
   </div>
+
+
   <div class="item item-divider">
 
   	
@@ -52,6 +56,6 @@ Target Toughness (To Wound)
     To Wound: {{towoundroll}}
   </div>
 </div>
-      <ion-list> <img src="img/tohit.jpg" width="100%"> <img src="img/towound.jpg" width="100%"> </ion-list> 
+ <!--      <ion-list> <img src="img/tohit.jpg" width="100%"> <img src="img/towound.jpg" width="100%"> </ion-list>  -->
     </ion-content>
 </ion-view>

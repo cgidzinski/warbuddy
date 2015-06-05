@@ -26,7 +26,11 @@
   </tr>
 </table> 
 <br>
-Movement: 6,12,24
+{{unit.move}}
+<br><br>
+Rules: {{unit.rules}}
+<br>
+Weapons: {{unit.weapons}}
 <br></div>
         </div>
 <h1 align="center">Weapons</h1>
@@ -39,8 +43,8 @@ Movement: 6,12,24
                 <h3>Range: {{weapon.range}}</h3>
                 <h3>Strength: {{weapon.strength}}</h3>
                 <h3>AP: {{weapon.ap}}</h3>
-                <h3>Type: {{weapon.type}} - {{weapon.attacks}}</h3>
-                <h3>Type: {{weapon.rules}}</h3> </div>
+                <h3>Type: {{weapon.type}}  {{weapon.attacks}}</h3>
+                <h3>Rules: {{weapon.rules}}</h3> </div>
         </div> 
         <h1 align="center">Rules</h1>
         <div class="card" ng-repeat="rule in ruleList">
