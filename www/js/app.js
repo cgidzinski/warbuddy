@@ -58,15 +58,6 @@ angular.module('WarBuddy', ['ionic', 'WarBuddy.controllers'])
                     }
                 }
             })
-            .state('tab.add', {
-                url: '/add',
-                views: {
-                    'tab-add': {
-                        templateUrl: 'templates/addItem.html',
-                        controller: 'addCtrl'
-                    }
-                }
-            })
             .state('tab.units-detail', {
                 url: '/units/:Id',
                 views: {

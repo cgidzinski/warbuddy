@@ -13,10 +13,19 @@
         </label>
         
         <div class="list list-inset" >
-            <ion-item class="item-avatar" ng-repeat="unit in units | filter:filters | orderBy:'name':!reverse" type="item-text-wrap" ui-sref="tab.units-detail({Id:unit._id})"> <img ng-src="{{unit.image}}">
+
+
+ <ion-list class="list list-inset">
+  <ion-item class="item-avatar" ng-repeat="unit in units | filter:filters | orderBy:'name':!reverse" type="item-text-wrap" ui-sref="tab.units-detail({Id:unit._id})">
+   <img ng-src="{{unit.image}}">
                 <h2>{{unit.name}}</h2> 
                 <p>{{unit.race}} {{unit.type}}</p>
-            </ion-item>
+    <ion-option-button class="button-positive" ng-click="openModal(unit)" >Edit</ion-option-button>
+    <ion-option-button class="button-assertive" ng-click="unitDelete(unit)">Delete</ion-option-button>
+  </ion-item>
+</ion-list>
+    <button class="button button-block button-positive" ng-click="openModal({})" >Add New</button>
+
         </div>
     </ion-content>
 </ion-view>
