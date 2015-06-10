@@ -1,7 +1,5 @@
 <ion-view view-title="Charts">
     <ion-content>
-   
-
 <div class="card">
   <div class="item item-divider">
     Chart Calculator
@@ -12,18 +10,9 @@ Attacker
 To Hit: Weapon Skill (WS)
 <br>
 To Wound: Weapon Strength (W)
-<div class="button-bar">
-    <a class="button" ng-class="{'button-positive': isActivea('1')}" ng-click="setActivea('1')">1</a>
-    <a class="button" ng-class="{'button-positive': isActivea('2')}" ng-click="setActivea('2')">2</a>
-    <a class="button" ng-class="{'button-positive': isActivea('3')}" ng-click="setActivea('3')">3</a>
-    <a class="button" ng-class="{'button-positive': isActivea('4')}" ng-click="setActivea('4')">4</a>
-    <a class="button" ng-class="{'button-positive': isActivea('5')}" ng-click="setActivea('5')">5</a>
-    <a class="button" ng-class="{'button-positive': isActivea('6')}" ng-click="setActivea('6')">6</a>
-    <a class="button" ng-class="{'button-positive': isActivea('7')}" ng-click="setActivea('7')">7</a>
-    <a class="button" ng-class="{'button-positive': isActivea('8')}" ng-click="setActivea('8')">8</a>
-    <a class="button" ng-class="{'button-positive': isActivea('9')}" ng-click="setActivea('9')">9</a>
-    <a class="button" ng-class="{'button-positive': isActivea('10')}" ng-click="setActivea('10')">10</a>
-</div>
+<div class="item range">  1  <input type="range" name="attacker" ng-model="attacker" min="1" max="10" value="0" ng-change="calcstats(attacker,defender)">  10</div>
+<div align="center"> {{attacker}}</div>
+
 </div>
   <div class="item item-text-wrap">
 <br>
@@ -32,18 +21,8 @@ Target
 To Hit: Weapon Skill (WS)
 <br>
 To Wound: Toughness (T)
-<div class="button-bar">
-    <a class="button" ng-class="{'button-positive': isActiveb('1')}" ng-click="setActiveb('1')">1</a>
-    <a class="button" ng-class="{'button-positive': isActiveb('2')}" ng-click="setActiveb('2')">2</a>
-    <a class="button" ng-class="{'button-positive': isActiveb('3')}" ng-click="setActiveb('3')">3</a>
-    <a class="button" ng-class="{'button-positive': isActiveb('4')}" ng-click="setActiveb('4')">4</a>
-    <a class="button" ng-class="{'button-positive': isActiveb('5')}" ng-click="setActiveb('5')">5</a>
-    <a class="button" ng-class="{'button-positive': isActiveb('6')}" ng-click="setActiveb('6')">6</a>
-    <a class="button" ng-class="{'button-positive': isActiveb('7')}" ng-click="setActiveb('7')">7</a>
-    <a class="button" ng-class="{'button-positive': isActiveb('8')}" ng-click="setActiveb('8')">8</a>
-    <a class="button" ng-class="{'button-positive': isActiveb('9')}" ng-click="setActiveb('9')">9</a>
-    <a class="button" ng-class="{'button-positive': isActiveb('10')}" ng-click="setActiveb('10')">10</a>
-</div>
+<div class="item range">  1  <input type="range" name="defender" ng-model="defender" min="1" max="10" value="0" ng-change="calcstats(attacker,defender)">  10</div>
+<div align="center">{{defender}}</div>
   </div>
 
 

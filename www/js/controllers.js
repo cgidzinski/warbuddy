@@ -178,7 +178,7 @@ angular.module('WarBuddy.controllers', ['ngStorage']).controller('HomeCtrl', fun
             console.log("Connection Failed");
             console.log(data + status + headers);
         });
-    })
+    }) 
     //////////////////////////////////////////////////////////////////////
     .controller('WeaponListCtrl', function ($scope, $http, $state, $ionicModal) {
         console.log("Weapon List Page Loaded");
@@ -334,20 +334,13 @@ angular.module('WarBuddy.controllers', ['ngStorage']).controller('HomeCtrl', fun
         console.log("Chart Page Loaded");
         $scope.tohitroll = "";
         $scope.towoundroll = "";
-        $scope.setActivea = function (type) {
-            $scope.activea = type;
-            calcstats();
-        };
-        $scope.isActivea = function (type) {
-            return type === $scope.activea;
-        };
-        $scope.setActiveb = function (type) {
-            $scope.activeb = type;
-            calcstats();
-        };
-        $scope.isActiveb = function (type) {
-            return type === $scope.activeb;
-        };
+       $scope.attacker=1;
+       $scope.defender=1;
+
+
+
+
+
         $scope.tohitchart = [
             ['4+', '4+', '5+', '5+', '5+', '5+', '5+', '5+', '5+', '5+'],
             ['3+', '4+', '4+', '5+', '5+', '5+', '5+', '5+', '5+', '5+'],
@@ -373,10 +366,11 @@ angular.module('WarBuddy.controllers', ['ngStorage']).controller('HomeCtrl', fun
             ['2+', '2+', '2+', '2+', '2+', '2+', '2+', '2+', '3+', '4+']
         ];
 
-        function calcstats() {
-            $scope.tohitroll = $scope.tohitchart[$scope.activea][$scope.activeb]
-            $scope.towoundroll = $scope.towoundchart[$scope.activea][$scope.activeb]
+       $scope.calcstats = function(atk,def) {
+             $scope.tohitroll = $scope.tohitchart[atk-1][def-1]
+             $scope.towoundroll = $scope.towoundchart[atk-1][def-1]
         }
+        $scope.calcstats(1,1);
     })
     ///////////////////////////
     .controller('RuleCtrl', function ($scope, $http, $stateParams) {

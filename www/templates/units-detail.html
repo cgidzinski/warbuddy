@@ -1,3 +1,12 @@
+<style type="text/css" media="screen">
+
+
+
+table tr{
+border:1px solid #D4D4D4;
+}
+</style>
+
 <ion-view view-title="Units">
     <ion-content class="padding">
 
@@ -6,32 +15,33 @@
 
          <div class="card">
             <div class="item item-divider"><h1>{{unit.name}}</h1>
-            <div class="item item-avatar" href="#">
-      <img ng-src="{{unit.image}}" style="width: 64px; height: 64px">
-<div class="row">
+              Race: {{unit.race}}</p><p>Type: {{unit.type}}<p>Points: {{unit.points}}</p>
+        
 
-  <div class="col"><p>Race: {{unit.race}}</p><p>Type: {{unit.type}}</p></div>
-  <div class="col" align="right"><p>Points: {{unit.points}}</p></div>
+
+
+    </div>
+
+<table border="1">
+          <tr><th>Stat</th><th>Value</th></tr>
+          <tr><td>WS</td><td>{{unit.ws}}</td></tr>
+          <tr><td>BS</td><td>{{unit.bs}}</td></tr>
+          <tr><td>S</td><td>{{unit.s}}</td></tr>
+          <tr><td>T</td><td>{{unit.t}}</td></tr>
+          <tr><td>W</td><td>{{unit.w}}</td></tr>
+          <tr><td>I</td><td>{{unit.i}}</td></tr>
+          <tr><td>A</td><td>{{unit.a}}</td></tr>
+          <tr><td>LD</td><td>{{unit.ld}}</td></tr>
+          <tr><td>SV</td><td>{{unit.sv}}</td></tr> 
+          <tr><td>&nbsp</td><td></td>&nbsp</tr>
+          <tr><td>Front</td><td>{{unit.front}}</td></tr>
+          <tr><td>Side</td><td>{{unit.side}}</td></tr>
+          <tr><td>Rear</td><td>{{unit.rear}}</td></tr>
+          <tr><td>HP</td><td>{{unit.hp}}</td></tr> 
+ </table>
+
+<br>
 </div>
-
-
-    </div><br>
-
-<table>
-  <tr>
-    <td>WS</td><td>BS</td><td>S</td><td>T</td><td>W</td><td>I</td><td>A</td><td>LD</td><td>SV</td> <td>  </td> <td>BS</td><td>Front</td><td>Side</td><td>Rear</td><td>HP</td>
-  </tr>
-  <tr>
-    <td>{{unit.ws}}</td><td>{{unit.bs}}</td><td>{{unit.s}}</td><td>{{unit.t}}</td><td>{{unit.w}}</td><td>{{unit.i}}</td><td>{{unit.a}}</td><td>{{unit.ld}}</td><td>{{unit.sv}}</td> <td>  </td> <td>{{unit.bs}}</td><td>{{unit.front}}</td><td>{{unit.side}}</td><td>{{unit.rear}}</td><td>{{unit.w}}</td>
-  </tr>
-</table> 
-<br>
-{{unit.move}}
-<br><br>
-Rules: {{unit.rules}}
-<br>
-Weapons: {{unit.weapons}}
-<br></div>
         </div>
 <h1 align="center">Weapons</h1>
         <div class="card" ng-repeat="weapon in weaponList">
