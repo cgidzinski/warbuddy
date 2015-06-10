@@ -2,9 +2,14 @@
     <ion-content>
         <label class="item item-input"> <i class="icon ion-search placeholder-icon"></i>
             <input type="text" ng-model="filters" placeholder="Search"> </label>
-        <div class="list list-inset" >
-            <ion-item class="item" ng-repeat="rule in rules | filter:filters | orderBy:'name':!reverse " ng-filter="" type="item-text-wrap" ui-sref="tab.rules-detail({Id:rule._id})">
-                <h2>{{rule.name}}</h2> </ion-item>
+        <ion-list class="list list-inset">
+            <ion-item ng-repeat="rule in rules | filter:filters | orderBy:'name':!reverse" type="item-text-wrap" ui-sref="tab.rules-detail({Id:rule._id})">
+                <h2>{{rule.name}}</h2>
+                <ion-option-button class="button-positive" ng-click="openModal(rule)">Edit</ion-option-button>
+                <ion-option-button class="button-assertive" ng-click="ruleDelete(rule)">Delete</ion-option-button>
+            </ion-item>
+        </ion-list>
+        <button class="button button-block button-positive" ng-click="openModal({})">Add New</button>
         </div>
     </ion-content>
 </ion-view>

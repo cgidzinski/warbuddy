@@ -1,0 +1,28 @@
+
+
+<ion-header-bar class="bar-energized">
+   <h1 class="title">New Item</h1>
+</ion-header-bar>
+<ion-content>
+   <div class="card">
+      <div class="item item-divider">
+         Weapons
+      </div>
+      <div class="item item-text-wrap">
+         <div class="list">
+
+            <label class="item item-input">    <span class="input-label">Name</span>    <input type="text" ng-model="item.name">  </label>
+            <label class="item item-input">    <span class="input-label">Range</span>    <input type="text" ng-model="item.range">  </label>
+            <label class="item item-input">    <span class="input-label">Strength</span>    <input type="text" ng-model="item.strength">  </label>
+            <label class="item item-input">    <span class="input-label">AP</span>    <input type="text" ng-model="item.ap">  </label>
+            <label class="item item-input">    <span class="input-label">Type</span>    <input type="text" ng-model="item.type">  </label>
+            <label class="item item-input">    <span class="input-label">Attacks</span>    <input type="text" ng-model="item.attacks">  </label>
+            <label class="item item-input">    <span class="input-label">Rules</span>    <input type="text" ng-model="item.rules">  </label>
+         </div>
+      </div>
+      <div class="item item-divider">
+         <button class="button button-full button-energized" ng-click="closeModal(item)">Done</button>
+      </div>
+   </div>
+</ion-content>
+
