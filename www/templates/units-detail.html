@@ -1,7 +1,6 @@
 <style type="text/css" media="screen">
 
 
-
 table tr{
 border:1px solid #D4D4D4;
 }
@@ -14,6 +13,11 @@ border:1px solid #D4D4D4;
 
 
          <div class="card">
+         <!--  <br>
+          <div align="center">
+          <img src="{{unit.image}}" width="128px",height="128px">
+            </div>
+            <br> -->
             <div class="item item-divider"><h1>{{unit.name}}</h1>
               Race: {{unit.race}}</p><p>Type: {{unit.type}}<p>Points: {{unit.points}}</p>
         
@@ -40,6 +44,9 @@ border:1px solid #D4D4D4;
           <tr><td>HP</td><td>{{unit.hp}}</td></tr> 
  </table>
 
+ Rules: {{unit.rules}}<br>
+ Weapons: {{unit.weapons}}
+
 <br>
 </div>
         </div>
@@ -50,6 +57,7 @@ border:1px solid #D4D4D4;
             </a>
             <div class="item item-text-wrap">
                 <h3>Name: {{weapon.name}}</h3>
+                <h3>Range: {{weapon.description}}</h3>
                 <h3>Range: {{weapon.range}}</h3>
                 <h3>Strength: {{weapon.strength}}</h3>
                 <h3>AP: {{weapon.ap}}</h3>
