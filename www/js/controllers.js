@@ -99,20 +99,14 @@ angular.module('WarBuddy.controllers', ['ngStorage']).controller('HomeCtrl', fun
             case "Monsterous Creature":
                 $scope.unit.move = 'Movement: 6", Charge: 2D6';
                 break;
-            case "Charriots":
-                $scope.unit.move = 'Movement: X", Charge: 2D6';
+            case "Chariots":
+                $scope.unit.move = 'Movement: 12", Charge: 2D6';
                 break;
             case "Walkers":
                 $scope.unit.move = 'Movement: 6", Charge: 2D6';
                 break;
             case "Skimmer":
-                $scope.unit.move = 'Movement: X", Charge: X';
-                break;
-            case "Flyer":
-                $scope.unit.move = 'Movement: X", Charge: X';
-                break;
-            case "Tank":
-                $scope.unit.move = 'Movement: X", Charge: X';
+                $scope.unit.move = 'Movement: 12", Charge: X';
                 break;
             default:
                 $scope.unit.move = 'Movement Not Found';
